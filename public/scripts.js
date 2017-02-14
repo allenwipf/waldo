@@ -1,17 +1,17 @@
 window.addEventListener("load", function(){
 
-	pageLoad = window.event.timeStamp;
+    pageLoad = window.event.timeStamp;
 
-	function addImageClickListener(){
+    function addImageClickListener(){
 
-		document.getElementById("waldoImage").addEventListener("click", clickImage);
-	}
+        document.getElementById("waldoImage").addEventListener("click", clickImage);
+    }
 
-	function closeModalBox(){
+    function closeModalBox(){
 
-		document.getElementById("myModal").addEventListener("click", closeModal);
+        document.getElementById("myModal").addEventListener("click", closeModal);
 
-	}
+    }
 
   addImageClickListener();
   closeModalBox();
@@ -22,42 +22,23 @@ window.addEventListener("load", function(){
 
 function clickImage(e){
 
-	var ourRequest = new XMLHttpRequest();
+    var ourRequest = new XMLHttpRequest();
 
-	var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY;
-	ourRequest.open('POST', '/', true);
+    var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY;
+    ourRequest.open('POST', '/', true);
 
-	//Send the proper header information along with the request
-	ourRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //Send the proper header information along with the request
+    ourRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    
     ourRequest.onreadystatechange = function(){
+  
+        if (ourRequest.responseText == 'true'){
 
-         if (ourRequest.status == XMLHttpRequest.DONE  && ourRequest.status == 200){
-
-            console.log("did it");
-            var myData = JSON.parse(ourRequest.responseText);
-
-         }
-
-        
-
+             profileView(e)
+        }
     };
 
-
     ourRequest.send(params);
-    // console.log(JSON.parse(ourRequest.responseText));
-    debugger;
-    console.log(myData);
-
-    if (myData ==  'true'){
-        profileView(e);  
-    }
-
-    // getRequest.send()
-
-    // verifyClick(e); // pause for 9 seconds
- 	
 }
 
 
@@ -101,7 +82,7 @@ function closeModal(e){
     if (e.target == this) {
         document.getElementById('myModal').style.display = "none";
     } else if (e.target == this.getElementsByClassName("close")[0]) {
-    	document.getElementById('myModal').style.display = "none";
+        document.getElementById('myModal').style.display = "none";
     }
 
 }
@@ -136,7 +117,6 @@ function closeModal(e){
 
 //     ourRequest.send()
 // }
-
 
 
 

@@ -31,32 +31,22 @@ get ("/waldodata"){
 	
 post ("/"){
 
-	# session.delete["true"]
-
-	check(params["offsetX"], params["offsetY"])
-	# binding.pry
-	return session[:found].to_json
-
-
+	return check(params["offsetX"], params["offsetY"])
+	return session["found"]
 }
 
 get ("/data") {
 
  	session[:found]
-
 }
 
 def check(x,y)
 
-	if (x.to_i >= 430) and (x.to_i  <= 480)  and (y.to_i >= 450) and (y.to_i <= 530) then
- 		
+	if (x.to_i >= 430) and (x.to_i  <= 480)  and (y.to_i >= 450) and (y.to_i <= 530) then	
  		session[:found] = "true"
-
- 		# record_find("true")
 	else
 		session[:found] = "false"
 	end
-
 end
 
 
