@@ -1,70 +1,44 @@
 window.addEventListener("load", function(){
 
     pageLoad = window.event.timeStamp;
-
     function addImageClickListener(){
-
         document.getElementById("waldoImage").addEventListener("click", clickImage);
     }
 
     function closeModalBox(){
-
         document.getElementById("myModal").addEventListener("click", closeModal);
-
     }
 
-  addImageClickListener();
-  closeModalBox();
+    function getHighScoresListener(){
+        document.getElementById("getHigh").addEventListener("click", highScores);
+    }
 
+
+addImageClickListener();
+closeModalBox();
+getHighScoresListener();
 
 });
 
 
 function clickImage(e){
 
-    var ourRequest = new XMLHttpRequest();
+    var findTime = ((e.timeStamp-pageLoad)/1000).toFixed(1);
 
-    var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY;
+    var ourRequest = new XMLHttpRequest();
+    var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY + "&time=" + findTime;
     ourRequest.open('POST', '/', true);
 
-    //Send the proper header information along with the request
     ourRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
     ourRequest.onreadystatechange = function(){
   
         if (ourRequest.responseText == 'true'){
-
              profileView(e)
         }
     };
-
     ourRequest.send(params);
 }
-
-
-// function verifyClick(e){
-
-//     var getRequest = new XMLHttpRequest();
-//     getRequest.open('GET', 'http://localhost:4567/data');
-
-//     getRequest.onload = function() {
-  
-//     //var ourData = JSON.parse(getRequest.responseText);
-  
-//     myData = getRequest.responseText
-
-//     console.log(myData)
-    
- 
-//     if (myData ==  'true'){
-//         profileView(e)  
-//     }
-
-//     };
-
-
-//     // getRequest.send()
-// }
 
 
 function profileView(e){
@@ -87,7 +61,27 @@ function closeModal(e){
 
 }
 
+function highScores(e){
 
+    var getRequest = new XMLHttpRequest();
+    getRequest.open('GET', 'http://localhost:4567/data');
+
+    getRequest.onload = function() {
+     
+    var ourData = getRequest.responseText;
+  
+    // myData = getRequest.responseText
+
+    alert(ourData)
+    // var ourData = JSON.parse(getRequest.responseText);
+
+    };
+
+    
+    getRequest.send()
+
+    e.preventDefault;
+}
 
 
 
