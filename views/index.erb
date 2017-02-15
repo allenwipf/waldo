@@ -15,20 +15,29 @@
 </header>
 
 <!-- The Modal -->
+
 <div id="myModal" class="modal">
 
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p>You found Waldo!</p>
+        <p id="anounce">You found Waldo!</p>
         <p id="find-time"></p>
        
     </div>
 
 </div>
-<h3 id="minutes">timer</h3><h3 id="seconds"></h3>
-<button id="getHigh">Get High Scores</button>
-<button id="stopWaldo">Stop Timer</button>
+
+
+<div id="timerDiv">
+	<button id="getHigh">Get High Scores</button>
+	<h3 id="timer"></h3>
+</div>
+
+
+<div id="pickDiv">
+<img id="circle" src="circle.png" width="50" alt="findCircle" style="display: none; top: 500px; left: 500px">
 <img id="waldoImage" src="waldo_image.jpg" width="700" alt="Waldo">
+</div>
 
 </body>
 </html>

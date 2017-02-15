@@ -52,3 +52,50 @@ img {
     text-decoration: none;
     cursor: pointer;
 }
+
+#timerDiv {
+
+    margin: auto;
+    width: 100%;
+    padding: 0px;
+    text-align: center;
+}
+
+#pickDiv {
+
+    border-style: solid;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 700px;
+
+}
+
+#circle {
+    float: left;
+    position: absolute;
+}
+
+#find-time{
+
+    font-family: monospace;
+    color: #1C226B;
+    font-weight: bold;
+    font-size: 12px;
+
+}
+
+#anounce{
+
+    font-family: monospace;
+    color: #1C226B;
+    font-weight: bold;
+    font-size: 12px;
+
+}
+
+
+
+
+

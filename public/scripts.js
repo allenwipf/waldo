@@ -8,7 +8,7 @@ window.addEventListener("load", function(){
    
     document.getElementById("getHigh").addEventListener("click", highScores);
 
-    document.getElementById("stopWaldo").addEventListener("click", stopTimer);
+    document.getElementById("waldoImage").addEventListener("click", mouseCircle)
 
 });
 
@@ -34,7 +34,9 @@ function clickImage(e){
 
 function profileView(e){
   
+    stopTimer()
     var findTime = ((e.timeStamp-pageLoad)/1000).toFixed(1);
+
     document.getElementById("find-time").innerHTML = ("You found him in " + findTime + " seconds!");
 
     document.getElementById('myModal').style.display = "block";
@@ -50,6 +52,8 @@ function closeModal(e){
         document.getElementById('myModal').style.display = "none";
     }
 
+    location.reload()
+
 }
 
 function highScores(e){
@@ -62,30 +66,34 @@ function highScores(e){
     var ourData = getRequest.responseText;
   
     // myData = getRequest.responseText
-
     alert(ourData)
     // var ourData = JSON.parse(getRequest.responseText);
 
     };
-
-    
+ 
     getRequest.send()
-
     e.preventDefault;
 }
 
+function mouseCircle(e){
 
+   console.log(String(e.offsetX))
+   console.log(String(e.offsetY))
 
-
-
-x = 1
-function counter() {
-
-    document.getElementById("seconds").innerHTML = x
-    x++
+    document.getElementById("circle").style.top = String(e.pageY -25) + "px"
+    document.getElementById("circle").style.left = String(e.pageX -25) + "px"
+    document.getElementById("circle").style.display = "block"
 }
 
-var waldoTimer = setInterval(counter, 1000);
+
+function counter(e) {
+    var date = new Date();
+    var time = date.getTime();
+    timeElapsed = ((time-pageLoad)/1000).toFixed(1);
+    document.getElementById("timer").innerHTML = "Time Elapsed: " + timeElapsed
+}
+
+var waldoTimer = setInterval(counter, 100);
 
 function stopTimer(){
 
