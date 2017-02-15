@@ -20,9 +20,13 @@ post ("/"){
 }
 
 get ("/data") {
-	
+
 	getHighestScores
- 	# erb :data
+	return session["highScores"]
+
+	erb :data
+
+ 
 }
 
 

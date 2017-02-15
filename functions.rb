@@ -1,4 +1,3 @@
-
 # checks if the posted x and y coordinances equal where Waldo is
 # Returns either "true" or "false" string as the responseText to the Post request
 def check(x,y)
@@ -20,7 +19,8 @@ def save_scores(time_data)
 end
 
 
-
+# Takes all scores and using regular expression takes out the numbers from each line,
+# turns that number to a float and sorts. 
 def getHighestScores
 	
 	timesArray = []
@@ -33,8 +33,26 @@ def getHighestScores
 	end
 
 	timesArray = timesArray.sort
-	return timesArray[0..9]
-	binding.pry
+	timesArray = timesArray[0..9]
+
+	records = beautifyHighScores(timesArray)
+	session["highScores"] = records
+
 end
+
+# Takes the array of top 10 scores and adds "Seconds!" and new line character 
+# to each score for display purposes
+def beautifyHighScores(data)
+
+	timesString = ''
+	data.each do |score| 
+		timesString += "#{score} Seconds! \n"
+ 	end
+
+ 	return timesString
+
+end
+
+
 
 
