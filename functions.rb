@@ -46,7 +46,7 @@ def beautifyHighScores(data)
 
 	timesString = ''
 	data.each do |score| 
-		timesString += "#{score} Seconds! \n"
+		timesString += "#{score} Seconds <br>"
  	end
 
  	return timesString

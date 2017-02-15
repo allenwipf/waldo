@@ -59,8 +59,11 @@ function highScores(e){
     getRequest.open('GET', 'http://localhost:4567/data');
 
     getRequest.onload = function() {
-        var ourData = getRequest.responseText;  
-        alert(ourData)
+        var ourData = getRequest.responseText; 
+
+        document.getElementById("anounce").innerHTML = "Top Scores!";
+        document.getElementById("find-time").innerHTML = ourData;
+        document.getElementById('myModal').style.display = "block";
     };
     getRequest.send();
     e.preventDefault;
@@ -92,7 +95,6 @@ function stopTimer(){
 
     clearInterval(waldoTimer);
 }
-
 
 
 
