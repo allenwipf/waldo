@@ -61,7 +61,7 @@ function highScores(e){
     getRequest.onload = function() {
         var ourData = getRequest.responseText; 
 
-        document.getElementById("anounce").innerHTML = "Top Scores!";
+        document.getElementById("anounce").innerHTML = "High Scores!";
         document.getElementById("find-time").innerHTML = ourData;
         document.getElementById('myModal').style.display = "block";
     };
