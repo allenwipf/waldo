@@ -20,7 +20,9 @@ post ("/"){
 }
 
 get ("/data") {
- 	erb :data
+	
+	getHighestScores
+ 	# erb :data
 }
 
 

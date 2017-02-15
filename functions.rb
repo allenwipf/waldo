@@ -18,3 +18,23 @@ def save_scores(time_data)
 	info.print time_data + " Seconds"
 	info.close
 end
+
+
+
+def getHighestScores
+	
+	timesArray = []
+	File.open("/Users/Wipf/Code/projects/waldo/views/data.erb", "r") do |data|
+
+		data.each_line do |time|	
+			time = time[/\d+\S\d/].to_f   # regular expressions. Rebular.com
+			timesArray.push(time)
+		end	
+	end
+
+	timesArray = timesArray.sort
+	return timesArray[0..9]
+	binding.pry
+end
+
+
