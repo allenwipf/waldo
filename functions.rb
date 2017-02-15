@@ -1,17 +1,20 @@
-# require 'net/http'
-# require 'json'
 
-# def waldoLocation()
+# checks if the posted x and y coordinances equal where Waldo is
+# Returns either "true" or "false" string as the responseText to the Post request
+def check(x,y)
 
-# 	uri = URI("http://localhost:4567/waldodata")
+	if (x.to_i >= 430) and (x.to_i  <= 480)  and (y.to_i >= 450) and (y.to_i <= 530) then	
+ 		session[:found] = "true"
+ 		save_scores(params["time"])
+	else
+		session[:found] = "false"
+	end
+end
 
-# 	rawData = Net::HTTP.get(uri)
-# 	parsedData = JSON.parse(rawData)
-
-# 	# puts parsedData
-# 	puts parsedData
-# 	puts parsedData[0]["xMin"]
-
-# end
-
-# waldoLocation()
+# appends each waldo find to csv file
+def save_scores(time_data)
+	info = File.open("/Users/Wipf/Code/projects/waldo/views/data.erb", "a") # a to append
+	info.print "\n"
+	info.print time_data + " Seconds"
+	info.close
+end
