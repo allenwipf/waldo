@@ -1,25 +1,16 @@
 window.addEventListener("load", function(){
 
     pageLoad = window.event.timeStamp;
-    function addImageClickListener(){
-        document.getElementById("waldoImage").addEventListener("click", clickImage);
-    }
+    
+    document.getElementById("waldoImage").addEventListener("click", clickImage);
+   
+    document.getElementById("myModal").addEventListener("click", closeModal);
+   
+    document.getElementById("getHigh").addEventListener("click", highScores);
 
-    function closeModalBox(){
-        document.getElementById("myModal").addEventListener("click", closeModal);
-    }
-
-    function getHighScoresListener(){
-        document.getElementById("getHigh").addEventListener("click", highScores);
-    }
-
-
-addImageClickListener();
-closeModalBox();
-getHighScoresListener();
+    document.getElementById("stopWaldo").addEventListener("click", stopTimer);
 
 });
-
 
 function clickImage(e){
 
@@ -85,6 +76,29 @@ function highScores(e){
 
 
 
+
+
+x = 1
+function counter() {
+
+    document.getElementById("seconds").innerHTML = x
+    x++
+}
+
+var waldoTimer = setInterval(counter, 1000);
+
+function stopTimer(){
+
+    clearInterval(waldoTimer);
+}
+
+
+
+// var sec = 0;
+// function pad ( val ) { return val > 9 ? val : "0" + val; }
+// setInterval( function(){
+//     document.getElementById("seconds").innerHTML=pad(++sec);
+// }, 1000);
 
 // function verifyClick(e){
 
