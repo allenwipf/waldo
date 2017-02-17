@@ -1,6 +1,7 @@
 window.addEventListener("load", function(){
 
-    pageLoad = window.event.timeStamp;
+    // pageLoad = event.timeStamp;
+    pageLoad = Date.now()
     document.getElementById("waldoImage").addEventListener("click", clickImage);
     document.getElementById("myModal").addEventListener("click", closeModal);
     document.getElementById("getHigh").addEventListener("click", highScores);
@@ -14,7 +15,9 @@ window.addEventListener("load", function(){
 // If response text is "true" will run the successModal function
 function clickImage(e){
 
-    var findTime = ((e.timeStamp-pageLoad)/1000).toFixed(1);
+    foundTime = Date.now()
+
+    var findTime = ((foundTime-pageLoad)/1000).toFixed(1);
     var ourRequest = new XMLHttpRequest();
     var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY + "&time=" + findTime;
     ourRequest.open('POST', '/', true);
@@ -33,7 +36,9 @@ function clickImage(e){
 function successModal(e){
   
     stopTimer();
-    var findTime = ((e.timeStamp-pageLoad)/1000).toFixed(1);
+    foundTime = Date.now()
+
+    var findTime = ((foundTime-pageLoad)/1000).toFixed(1);
 
     document.getElementById("find-time").innerHTML = ("You found him in " + findTime + " seconds!");
     document.getElementById('myModal').style.display = "block";
@@ -82,8 +87,8 @@ function mouseCircle(e){
 // As 1/10 second goes by this function will run and update the innerHTML
 // of the proper node.
 function counter(e) {
-    var date = new Date();
-    var time = date.getTime();
+    var time = Date.now()
+
     timeElapsed = ((time-pageLoad)/1000).toFixed(1);
     document.getElementById("timer").innerHTML = "Time Elapsed: " + timeElapsed;
 }
@@ -95,6 +100,5 @@ function stopTimer(){
 
     clearInterval(waldoTimer);
 }
-
 
 
