@@ -1,10 +1,12 @@
 window.addEventListener("load", function(){
 
     imageId = 1
+    waldoFound = "no"
     document.getElementById("waldoImage").addEventListener("click", clickImage);
     document.getElementById("myModal").addEventListener("click", closeModal);
     document.getElementById("getHigh").addEventListener("click", highScores);
     document.getElementById("start").addEventListener("click", startGame)
+    document.getElementById("reset").addEventListener("click", resetGame)
     document.getElementsByClassName("images")[0].addEventListener("click",changeImage)
 
 
@@ -16,8 +18,14 @@ function startGame(){
     waldoTimer = setInterval(counter, 100);
     document.getElementById("waldoImage").addEventListener("click", mouseCircle)
     document.getElementById("start").style.display = "none";
+    document.getElementById("reset").style.display = "block";
     document.getElementById("cover").style.display = "none";
     document.getElementsByClassName("images")[0].style.display = "none";
+}
+
+function resetGame(){
+
+    location.reload();
 }
 
 // After a player clicks on the Waldo image this function posts my X and Y offset
@@ -27,20 +35,25 @@ function startGame(){
 
 function clickImage(e){
 
-    foundTime = Date.now()
-    var findTime = ((foundTime-pageLoad)/1000).toFixed(1);
-    var ourRequest = new XMLHttpRequest();
-    var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY + "&time=" + findTime + "&imageId=" + imageId;
-    ourRequest.open('POST', '/', true);
-    ourRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    if (waldoFound == "no"){
+        foundTime = Date.now()
+        var findTime = ((foundTime-pageLoad)/1000).toFixed(1);
+        var ourRequest = new XMLHttpRequest();
+        var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY + "&time=" + findTime + "&imageId=" + imageId;
+        ourRequest.open('POST', '/', true);
+        ourRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-    ourRequest.onreadystatechange = function(){
-  
-        if (ourRequest.responseText == 'true'){
-             successModal(e);
-        }
-    };
-    ourRequest.send(params);
+        ourRequest.onreadystatechange = function(){
+      
+            if (ourRequest.responseText == 'true'){
+                 successModal(e);
+            }
+        };
+        ourRequest.send(params);
+    }else{
+
+        return
+    }
 }
 
 function changeImage(e){
@@ -70,6 +83,7 @@ function successModal(e){
     document.getElementById("find-time").innerHTML = ("You found him in " + findTime + " seconds!");
     document.getElementById('myModal').style.display = "block";
     document.getElementById("anounce").innerHTML = "You found Waldo!"
+    waldoFound = "yes"
 }
 
 // Closes the Modal box if the "X" our anything outside the Modal is clicked on.
@@ -81,7 +95,7 @@ function closeModal(e){
     } else if (e.target == this.getElementsByClassName("close")[0]) {
         document.getElementById('myModal').style.display = "none";
     }
-    // location.reload();
+   
 }
 
 // Sends a Get request to server to retrieve the high scores when the "high Scores"
