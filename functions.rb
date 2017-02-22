@@ -4,16 +4,19 @@ def check(x,y,id)
 
 		if (id.to_i == 1) and ((445..470).member?(x.to_i)) and ((470..550).member?(y.to_i)) then	
 	 		session[:found] = "true"
-	 		save_scores(params["time"])
+	 		save_scores(params["time"],id)
 
 		elsif (id.to_i == 3) and ((590..625).member?(x.to_i)) and ((320..350).member?(y.to_i)) then
 			session[:found] = "true"
+			save_scores(params["time"],id)
 
 		elsif (id.to_i == 2) and ((600..625).member?(x.to_i)) and ((120..150).member?(y.to_i)) then
 			session[:found] = "true"
+			save_scores(params["time"],id)
 		
 		elsif (id.to_i == 4) and ((385..400).member?(x.to_i)) and ((430..440).member?(y.to_i)) then
 			session[:found] = "true"
+			save_scores(params["time"],id)
 
 		else		
 			session[:found] = "false"
@@ -21,8 +24,9 @@ def check(x,y,id)
 end
 
 # appends each waldo find to csv file
-def save_scores(time_data)
-	info = File.open("/Users/Wipf/Code/projects/waldo/views/data.erb", "a") # a to append
+def save_scores(time_data,id)
+
+	info = File.open("/Users/Wipf/Code/projects/waldo/views/map" + id + ".erb", "a") # a to append
 	info.print "\n"
 	info.print time_data + " Seconds"
 	info.close
@@ -31,10 +35,10 @@ end
 
 # Takes all scores and using regular expression takes out the numbers from each line,
 # turns that number to a float and sorts. 
-def getHighestScores
+def getHighestScores(id)
 	
 	timesArray = []
-	File.open("/Users/Wipf/Code/projects/waldo/views/data.erb", "r") do |data|
+	File.open("/Users/Wipf/Code/projects/waldo/views/map" + id + ".erb", "r") do |data|
 
 		data.each_line do |time|	
 			time = time[/\d+\S\d/].to_f   # regular expressions. Rebular.com

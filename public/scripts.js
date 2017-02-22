@@ -26,7 +26,7 @@ function startGame(){
 // If response text is "true" will run the successModal function
 
 function clickImage(e){
-debugger
+
     foundTime = Date.now()
     var findTime = ((foundTime-pageLoad)/1000).toFixed(1);
     var ourRequest = new XMLHttpRequest();
@@ -69,6 +69,7 @@ function successModal(e){
 
     document.getElementById("find-time").innerHTML = ("You found him in " + findTime + " seconds!");
     document.getElementById('myModal').style.display = "block";
+    document.getElementById("anounce").innerHTML = "You found Waldo!"
 }
 
 // Closes the Modal box if the "X" our anything outside the Modal is clicked on.
@@ -80,25 +81,42 @@ function closeModal(e){
     } else if (e.target == this.getElementsByClassName("close")[0]) {
         document.getElementById('myModal').style.display = "none";
     }
-    location.reload();
+    // location.reload();
 }
 
 // Sends a Get request to server to retrieve the high scores when the "high Scores"
 // button is clicked
 function highScores(e){
 
+    var imageName = document.getElementById("waldoImage").src.substr(length - 5)
+    var picId = returnId(imageName)
+
+    var params = "picId=" + picId
+
     var getRequest = new XMLHttpRequest();
-    getRequest.open('GET', 'http://localhost:4567/data');
+    getRequest.open('GET', '/data' + '?' + params, true);
 
     getRequest.onload = function() {
         var ourData = getRequest.responseText; 
 
-        document.getElementById("anounce").innerHTML = "High Scores!";
+        document.getElementById("anounce").innerHTML = "Top 10 for this map!";
         document.getElementById("find-time").innerHTML = ourData;
         document.getElementById('myModal').style.display = "block";
     };
     getRequest.send();
-    e.preventDefault;
+    e.preventDefault();
+}
+
+function returnId(picId){
+    if (picId == "o.jpg"){
+        return 1
+    } else if (picId == "2.jpg"){
+        return 2
+    } else if (picId == "3.jpg"){
+        return 3
+    } else if (picId == "4.jpg"){
+        return 4
+    }
 }
 
 // place as circle around the mouse click anytime a player clicks on the image

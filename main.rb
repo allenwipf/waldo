@@ -21,12 +21,8 @@ post ("/"){
 
 get ("/data") {
 
-	getHighestScores
+	getHighestScores(params["picId"])
 	return session["highScores"]
-
-	erb :data
-
- 
 }
 
 
