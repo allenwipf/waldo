@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
 <head>
-<meta charset="utf-8">
-<title>Where's Waldo</title>
+    <meta charset="utf-8">
+    <title>Where's Waldo</title>
 
-<link rel="stylesheet" type="text/css" href="styles.css">
-<script type = "text/javascript" src="scripts.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="text/javascript" src="scripts.js"></script>
 </head>
-
 <body>
 
-<header>
-</header>
 
-<!-- The Modal -->
-
-<div id="myModal" class="modal">
-
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <p id="anounce">You found Waldo!</p>
-        <p id="find-time"></p>
-       
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p id="anounce">You found Waldo!</p>
+            <p id="find-time"></p>
+        </div>
     </div>
 
+
+    <div id="timerDiv">
+        <button id="start">Start Search!</button>
+        <button id="getHigh">Get High Scores</button>
+        <h3 id="timer"></h3>
+    </div>
+
+ <div class="flex-container">
+
+    <div id="pickDiv">
+        <img id="circle" src="circle.png" width="50" alt="findCircle" style="display: none; top: 500px; left: 500px">
+        <div id="cover" style="display: block"></div>
+        <img id="waldoImage" src="waldo.jpg" width="700" alt="Waldo">
+    </div>
+
+    <div class="images">
+        <h5>More Maps</h5>
+        <div><img class="zoomin" id="waldo2" src="waldo2.jpg" width="150" alt="Waldo"></div>
+        <div><img class="zoomin" id="waldo3" src="waldo3.jpg" width="150" alt="Waldo"></div>
+        <div><img class="zoomin" id="waldo4" src="waldo4.jpg" width="150" alt="Waldo"></div>
+    </div>
 </div>
 
+  
 
-<div id="timerDiv">
-	<button id="getHigh">Get High Scores</button>
-	<h3 id="timer"></h3>
-</div>
-
-
-<div id="pickDiv">
-<img id="circle" src="circle.png" width="50" alt="findCircle" style="display: none; top: 500px; left: 500px">
-<img id="waldoImage" src="waldo_image.jpg" width="700" alt="Waldo">
-</div>
 
 </body>
 </html>

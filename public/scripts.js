@@ -1,25 +1,36 @@
 window.addEventListener("load", function(){
 
-    // pageLoad = event.timeStamp;
-    pageLoad = Date.now()
+    imageId = 1
     document.getElementById("waldoImage").addEventListener("click", clickImage);
     document.getElementById("myModal").addEventListener("click", closeModal);
     document.getElementById("getHigh").addEventListener("click", highScores);
-    document.getElementById("waldoImage").addEventListener("click", mouseCircle)
+    document.getElementById("start").addEventListener("click", startGame)
+    document.getElementsByClassName("images")[0].addEventListener("click",changeImage)
+
 
 });
 
-// After a player clicks on the waldo image this function posts my X and Y offset
-// coordinance and waits for reponse text. 
+function startGame(){
+
+    pageLoad = Date.now()
+    waldoTimer = setInterval(counter, 100);
+    document.getElementById("waldoImage").addEventListener("click", mouseCircle)
+    document.getElementById("start").style.display = "none";
+    document.getElementById("cover").style.display = "none";
+    document.getElementsByClassName("images")[0].style.display = "none";
+}
+
+// After a player clicks on the Waldo image this function posts my X and Y offset
+// coordinates and waits for response text. 
 // 
 // If response text is "true" will run the successModal function
+
 function clickImage(e){
-
+debugger
     foundTime = Date.now()
-
     var findTime = ((foundTime-pageLoad)/1000).toFixed(1);
     var ourRequest = new XMLHttpRequest();
-    var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY + "&time=" + findTime;
+    var params = "offsetX=" + e.offsetX + "&offsetY=" + e.offsetY + "&time=" + findTime + "&imageId=" + imageId;
     ourRequest.open('POST', '/', true);
     ourRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
@@ -30,6 +41,22 @@ function clickImage(e){
         }
     };
     ourRequest.send(params);
+}
+
+function changeImage(e){
+
+    if (e.target.id == "waldo2") {
+        document.getElementById("waldoImage").src = "waldo2.jpg"
+        imageId = 2
+
+    } else if (e.target.id == "waldo3"){
+        document.getElementById("waldoImage").src = "waldo3.jpg"
+        imageId = 3
+
+   } else if (e.target.id == "waldo4"){
+        document.getElementById("waldoImage").src = "waldo4.jpg"
+        imageId = 4
+    }
 }
 
 // Shows the a hidden Modal when Waldo is found
@@ -78,8 +105,8 @@ function highScores(e){
 // whether or whether not Waldo is found
 function mouseCircle(e){
 
-    document.getElementById("circle").style.top = String(e.pageY -25) + "px";
-    document.getElementById("circle").style.left = String(e.pageX -25) + "px";
+    document.getElementById("circle").style.top = String(e.layerY -25) + "px";
+    document.getElementById("circle").style.left = String(e.layerX -25) + "px";
     document.getElementById("circle").style.display = "block";
 }
 
@@ -94,11 +121,10 @@ function counter(e) {
 }
 
 // stops the Time Elapsed Counter. This fires when Waldo is found.
-var waldoTimer = setInterval(counter, 100);
+// var waldoTimer = setInterval(counter, 100);
 
 function stopTimer(){
 
     clearInterval(waldoTimer);
 }
-
 

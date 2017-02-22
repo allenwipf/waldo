@@ -3,22 +3,19 @@ body {
     background-color: #F9F7F7;
     font-family: sans-serif;
     color: #364F6B;
-
-    font-size: 12px;
-    
+    font-size: 12px;  
 }
 
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
+h5{
+    padding: 0px;
+    margin: 0px;
+    font-size: 15px;
 }
 
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 50; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -61,29 +58,12 @@ img {
     text-align: center;
 }
 
-#pickDiv {
-
-    border-style: solid;
-
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 700px;
-
-}
-
-#circle {
-    float: left;
-    position: absolute;
-}
-
 #find-time{
 
     font-family: monospace;
     color: #1C226B;
     font-weight: bold;
     font-size: 14px;
-
 }
 
 #anounce{
@@ -92,10 +72,37 @@ img {
     color: #1C226B;
     font-weight: bold;
     font-size: 20px;
-
 }
 
+#pickDiv {
 
+    margin: auto;
+    width: 700px;
+    position: relative;
+}
 
+#cover{
 
+    background-color: rgba(0,0,0,0.9);
+    width: 101%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+}
 
+#waldoImage {
+
+    border-style: solid;
+}
+
+#circle {
+   
+    position: absolute;
+}
+
+.flex-container {
+  
+    display: flex;
+    margin: auto;
+    width: 890px;
+}

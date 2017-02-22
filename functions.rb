@@ -1,13 +1,23 @@
 # checks if the posted x and y coordinances equal where Waldo is
 # Returns either "true" or "false" string as the responseText to the Post request
-def check(x,y)
+def check(x,y,id)
 
-	if (x.to_i >= 430) and (x.to_i  <= 480)  and (y.to_i >= 450) and (y.to_i <= 530) then	
- 		session[:found] = "true"
- 		save_scores(params["time"])
-	else
-		session[:found] = "false"
-	end
+		if (id.to_i == 1) and ((445..470).member?(x.to_i)) and ((470..550).member?(y.to_i)) then	
+	 		session[:found] = "true"
+	 		save_scores(params["time"])
+
+		elsif (id.to_i == 3) and ((590..625).member?(x.to_i)) and ((320..350).member?(y.to_i)) then
+			session[:found] = "true"
+
+		elsif (id.to_i == 2) and ((600..625).member?(x.to_i)) and ((120..150).member?(y.to_i)) then
+			session[:found] = "true"
+		
+		elsif (id.to_i == 4) and ((385..400).member?(x.to_i)) and ((430..440).member?(y.to_i)) then
+			session[:found] = "true"
+
+		else		
+			session[:found] = "false"
+		end
 end
 
 # appends each waldo find to csv file

@@ -15,7 +15,7 @@ get ("/waldodata"){
 
 	
 post ("/"){
-	check(params["offsetX"], params["offsetY"])
+	check(params["offsetX"], params["offsetY"], params["imageId"])
 	return session["found"]
 }
 
